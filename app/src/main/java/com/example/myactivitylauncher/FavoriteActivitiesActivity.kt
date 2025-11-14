@@ -4,26 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myactivitylauncher.data.FavoriteManager
 import com.example.myactivitylauncher.data.RecentItem
+
+// (FIX 2) Imports required for Dialog fixes
 import android.graphics.drawable.ColorDrawable
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import android.content.res.Configuration
 
-
-
 class FavoriteActivitiesActivity : AppCompatActivity() {
 
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: RecentActivitiesAdapter
-    private var allItems: List<RecentItem> = emptyList()
+    private lateinit var allItems: MutableList<RecentItem>
+
+    private var multiSelectMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,116 +34,153 @@ class FavoriteActivitiesActivity : AppCompatActivity() {
         recycler = findViewById(R.id.recyclerFavorites)
         recycler.layoutManager = LinearLayoutManager(this)
 
-        val pm = packageManager
-        allItems = FavoriteManager.getInstance(this).getFavorites()
+        allItems = FavoriteManager.getInstance(this).getFavorites().toMutableList()
 
         adapter = RecentActivitiesAdapter(
-            pm,
+            packageManager,
             allItems,
-            onClick = { item -> openDetail(item) },
-            onLongClick = { item -> confirmDeleteFavorite(item) }
+            onItemClick = { openDetail(it) },
+            onItemLongClick = { enterMultiSelect() },
+            onSelectionChanged = { updateSelectionTitle() }
         )
 
         recycler.adapter = adapter
     }
 
+    // --- (BUG FIX) ---
+    // 當 Activity 從背景 (例如 ActivityDetailActivity) 返回時，
+    // onResume() 會被呼叫，我們在這裡重新載入列表
     override fun onResume() {
         super.onResume()
-        allItems = FavoriteManager.getInstance(this).getFavorites()
+        // 1. 重新從資料庫取得最新的列表
+        allItems = FavoriteManager.getInstance(this).getFavorites().toMutableList()
+        // 2. 把新列表交給 adapter 更新 (這也會重設搜尋)
         adapter.submitList(allItems)
+    }
+    // --- (END OF FIX) ---
+
+    private fun openDetail(item: RecentItem) {
+        if (!multiSelectMode) {
+            val intent = Intent(this, ActivityDetailActivity::class.java)
+            intent.putExtra(ActivityDetailActivity.EXTRA_PACKAGE_NAME, item.packageName)
+            intent.putExtra(ActivityDetailActivity.EXTRA_ACTIVITY_NAME, item.activityName)
+            intent.putExtra(ActivityDetailActivity.EXTRA_LABEL, item.label)
+            startActivity(intent)
+        } else {
+            adapter.toggleSelection(item)
+        }
+    }
+
+    private fun enterMultiSelect() {
+        if (!multiSelectMode) {
+            multiSelectMode = true
+            adapter.enableMultiSelect()
+            invalidateOptionsMenu()
+            supportActionBar?.title = "Select items"
+        }
+    }
+
+    private fun updateSelectionTitle() {
+        val count = adapter.getSelectedCount()
+        supportActionBar?.title =
+            if (count == 0) "Select items" else "$count selected"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_favorite, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        searchView.queryHint = getString(R.string.search_activities_hint)
+        val searchView = searchItem?.actionView as? androidx.appcompat.widget.SearchView
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView?.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                filterFavorites(query.orEmpty())
+                adapter.filter(query)
                 return true
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterFavorites(newText.orEmpty())
+                adapter.filter(newText)
                 return true
             }
         })
-
         return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        menu.findItem(R.id.action_clear_favorite)?.isVisible = true
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
+
+            R.id.action_clear_favorite -> {
+                if (multiSelectMode && adapter.getSelectedCount() > 0) {
+                    confirmDeleteSelected()
+                } else {
+                    confirmDeleteAll()
+                }
                 true
             }
+
+            android.R.id.home -> {
+                exitMultiSelect()
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun openDetail(item: RecentItem) {
-        val intent = Intent(this, ActivityDetailActivity::class.java).apply {
-            putExtra(ActivityDetailActivity.EXTRA_PACKAGE_NAME, item.packageName)
-            putExtra(ActivityDetailActivity.EXTRA_ACTIVITY_NAME, item.activityName)
-            putExtra(ActivityDetailActivity.EXTRA_LABEL, item.label)
-        }
-        startActivity(intent)
-    }
+    /** Delete selected items */
+    private fun confirmDeleteSelected() {
+        val selected = adapter.getSelectedItems()
 
-    private fun filterFavorites(query: String) {
-        val q = query.trim().lowercase()
-        val filtered = if (q.isEmpty()) {
-            allItems
-        } else {
-            allItems.filter { item ->
-                item.label.lowercase().contains(q) ||
-                        item.packageName.lowercase().contains(q) ||
-                        item.activityName.lowercase().contains(q)
-            }
-        }
-        adapter.submitList(filtered)
-    }
-
-//    private fun confirmDeleteFavorite(item: RecentItem) {
-//        AlertDialog.Builder(this)
-//            .setTitle(getString(R.string.remove_favorite_title))
-//            .setMessage(getString(R.string.remove_favorite_message, item.label))
-//            .setPositiveButton(getString(R.string.yes)) { _, _ ->
-//                val manager = FavoriteManager.getInstance(this)
-//                manager.removeFavorite(item.packageName, item.activityName)
-//                allItems = manager.getFavorites()
-//                adapter.submitList(allItems)
-//                Toast.makeText(this, R.string.removed_from_favorite, Toast.LENGTH_SHORT).show()
-//            }
-//            .setNegativeButton(getString(R.string.no), null)
-//            .show()
-//    }
-
-    private fun confirmDeleteFavorite(item: RecentItem) {
-        val dialog = AlertDialog.Builder(this)
-            .setTitle(getString(R.string.remove_favorite_title))
-            .setMessage(getString(R.string.remove_favorite_message, item.label))
-            .setPositiveButton(getString(R.string.yes)) { d, _ ->
+        val dialog = AlertDialog.Builder(this) // (FIX 2) Changed to dialog variable
+            .setTitle("Remove selected?")
+            .setMessage("Are you sure you want to remove ${selected.size} items from favorites?")
+            .setPositiveButton("Remove") { _, _ ->
                 val manager = FavoriteManager.getInstance(this)
-                manager.removeFavorite(item.packageName, item.activityName)
-
-                allItems = manager.getFavorites()
+                selected.forEach {
+                    manager.removeFavorite(it.packageName, it.activityName)
+                }
+                allItems.removeAll(selected)
                 adapter.submitList(allItems)
-
-                Toast.makeText(this, getString(R.string.removed_from_favorite), Toast.LENGTH_SHORT).show()
-                d.dismiss()
+                exitMultiSelect()
             }
-            .setNegativeButton(getString(R.string.no), null)
-            .create()
+            .setNegativeButton("Cancel", null)
+            .create() // (FIX 2) .create()
 
-        applyDialogTextColor(dialog)
-        dialog.show()
+        applyDialogTextColor(dialog) // (FIX 2) Call manual fix function
+        dialog.show() // (FIX 2) .show()
     }
 
+    /** Delete all favorites */
+    private fun confirmDeleteAll() {
+        val dialog = AlertDialog.Builder(this) // (FIX 2) Changed to dialog variable
+            .setTitle("Clear all?")
+            .setMessage("Remove ALL favorites?")
+            .setPositiveButton("Clear") { _, _ ->
+                val manager = FavoriteManager.getInstance(this)
+                manager.clearFavorites()
+                allItems.clear()
+                adapter.submitList(allItems)
+                exitMultiSelect()
+            }
+            .setNegativeButton("Cancel", null)
+            .create() // (FIX 2) .create()
+
+        applyDialogTextColor(dialog) // (FIX 2) Call manual fix function
+        dialog.show() // (FIX 2) .show()
+    }
+
+    private fun exitMultiSelect() {
+        multiSelectMode = false
+        adapter.disableMultiSelect()
+        supportActionBar?.title = getString(R.string.title_favorites)
+        invalidateOptionsMenu()
+    }
+
+    // --- (FIX 2) Function pasted from your GitHub file ---
     /** Force dialog text and background to match current light / dark mode */
     private fun applyDialogTextColor(dialog: AlertDialog) {
         val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
@@ -151,10 +188,12 @@ class FavoriteActivitiesActivity : AppCompatActivity() {
 
         val textColor = ContextCompat.getColor(
             this,
+            // (MODIFIED) Ensure Dark Mode text is button_dark_text (white)
             if (isDark) R.color.button_dark_text else R.color.text_primary
         )
         val bgColor = ContextCompat.getColor(
             this,
+            // (MODIFIED) Ensure Dark Mode background is background_dark (your #2B2D30)
             if (isDark) R.color.background_dark else R.color.white
         )
 
@@ -165,7 +204,10 @@ class FavoriteActivitiesActivity : AppCompatActivity() {
 
         titleView?.setTextColor(textColor)
         messageView?.setTextColor(textColor)
+
+        // (BONUS FIX) Also fix button colors
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(textColor)
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(textColor)
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.setTextColor(textColor)
     }
-
-
 }

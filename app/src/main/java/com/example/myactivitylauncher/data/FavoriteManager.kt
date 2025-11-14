@@ -63,4 +63,9 @@ class FavoriteManager private constructor(context: Context) {
         list.removeAll { it.packageName == pkg && it.activityName == activity }
         saveList(list)
     }
+
+    /** NEW — Clear ALL favorites */
+    fun clearFavorites() {
+        prefs.edit().remove(KEY_FAVORITE_LIST).apply()
+    }
 }

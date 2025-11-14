@@ -1,83 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <!-- Main vertical content container -->
     <LinearLayout
-        android:id="@+id/layoutContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="top|center_horizontal"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:paddingBottom="24dp"
-        android:paddingTop="@dimen/content_top_padding">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="@dimen/content_top_padding"
+        android:paddingBottom="16dp">
 
         <ImageView
             android:id="@+id/imageIcon"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
-            android:contentDescription="@null" />
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/textLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Activity label"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginBottom="16dp"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Package name"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/textPackage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="com.example.app"
-            android:textSize="14sp"
             android:layout_marginBottom="12dp"
-            android:textColor="@color/text_secondary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Activity class"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
-            android:textColor="@color/text_primary" />
-
-        <TextView
-            android:id="@+id/textClass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="com.example.app.MainActivity"
-            android:textSize="14sp"
-            android:layout_marginBottom="24dp"
-            android:textColor="@color/text_secondary" />
-
-        <Button
-            android:id="@+id/buttonLaunch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="LAUNCH ACTIVITY"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/button_bg"
-            android:textColor="@color/button_text" />
+            android:textColor="?android:attr/textColorPrimary" /> <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Package name"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        android:textColor="?android:attr/textColorPrimary" /> <TextView
+        android:id="@+id/textPackage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="com.example.app"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp"
+        android:textColor="?android:attr/textColorSecondary" /> <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activity class"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        android:textColor="?android:attr/textColorPrimary" /> <TextView
+        android:id="@+id/textClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="com.example.app.MainActivity"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp"
+        android:textColor="?android:attr/textColorSecondary" /> <Button
+        android:id="@+id/buttonLaunch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LAUNCH ACTIVITY"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/activity_detail_launch_bg"
+        android:textColor="@color/activity_detail_launch_text"
+        android:textStyle="bold"
+        android:textAllCaps="true" />
 
         <Button
             android:id="@+id/buttonFavorite"
@@ -85,17 +74,19 @@
             android:layout_height="wrap_content"
             android:text="ADD TO FAVORITE"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/button_bg"
-            android:textColor="@color/button_text" />
+            android:backgroundTint="?attr/colorButtonNormal"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textAllCaps="true" />
 
         <Button
-            android:id="@+id/buttonShare"
+            android:id="@+id/buttonShortcut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SHARE INFO"
+            android:text="ADD SHORTCUT TO HOME SCREEN"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/button_bg"
-            android:textColor="@color/button_text" />
+            android:backgroundTint="?attr/colorButtonNormal"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textAllCaps="true" />
 
     </LinearLayout>
 

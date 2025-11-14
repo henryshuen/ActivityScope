@@ -39,11 +39,10 @@ class HistoryManager private constructor(context: Context) {
         prefs.edit().putString(KEY_RECENT, gson.toJson(list)).apply()
     }
 
-    /** 新增一筆啟動紀錄 */
+    /** Add launch record */
     fun recordLaunch(item: RecentItem) {
         val list = loadList()
 
-        // 同一個 activity 只留一筆，新的在最前面
         list.removeAll { it.packageName == item.packageName && it.activityName == item.activityName }
         list.add(0, item)
 
@@ -54,15 +53,15 @@ class HistoryManager private constructor(context: Context) {
         saveList(list)
     }
 
-    /** 取得全部 recent list */
+    /** Get entire recent list */
     fun getRecentItems(): List<RecentItem> = loadList()
 
-    /** 清空全部紀錄 */
+    /** Clear all history */
     fun clearHistory() {
         saveList(emptyList())
     }
 
-    /** 刪除單一筆紀錄（給 long press 用） */
+    /** Remove single item (existing) */
     fun removeItem(target: RecentItem) {
         val list = loadList()
         val iterator = list.iterator()
@@ -77,5 +76,22 @@ class HistoryManager private constructor(context: Context) {
             }
         }
         saveList(list)
+    }
+
+    /** NEW — remove multiple items */
+    fun removeItems(targets: List<RecentItem>) {
+        val list = loadList()
+
+        val targetSet = targets.toSet()
+
+        val newList = list.filterNot { item ->
+            targetSet.any { t ->
+                t.packageName == item.packageName &&
+                        t.activityName == item.activityName &&
+                        t.timeMillis == item.timeMillis
+            }
+        }
+
+        saveList(newList)
     }
 }

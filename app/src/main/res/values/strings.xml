@@ -38,35 +38,47 @@
     <string name="remove_favorite_message">Remove "%1$s" from favorites?</string>
     <string name="removed_from_favorite">Removed from favorites</string>
 
+    <!-- Favorites: clear all -->
+    <string name="action_clear_favorites">Clear favorites</string>
+    <string name="clear_favorites">Clear favorites</string>
+    <string name="clear_favorites_message">Are you sure you want to remove all favorites?</string>
+    <string name="cleared_favorites">Favorites cleared</string>
+
     <!-- Settings: Theme -->
     <string name="settings_theme_section">Theme</string>
     <string name="settings_theme_system">System default</string>
     <string name="settings_theme_light">Light theme</string>
     <string name="settings_theme_dark">Dark theme</string>
 
-    <!-- Settings: About -->
     <string name="settings_about_section">About</string>
 
-    <!-- 作者 -->
     <string name="settings_about_author">
         Author: Henryshuen
     </string>
 
-    <!-- 致敬與靈感來源 -->
-    <string name="settings_about_based_on">
-        Inspired by the open-source project "Activity Launcher", and created to improve activity
-        browsing with recent and favorite features.
+    <string name="settings_about_version">
+        ActivityScope version: 1.1.0
     </string>
 
-    <!-- 原作者 GitHub 連結 -->
+    <string name="settings_about_repo">
+        GitHub: https://github.com/henryshuen/ActivityScope
+    </string>
+
+    <string name="settings_about_based_on">
+        Inspired by the open source project "Activity Launcher", and created to improve activity
+        browsing with recent/favorite features and an improved search experience that persists.
+    </string>
+
     <string name="settings_about_source">
         Original project: https://github.com/butzist/ActivityLauncher
     </string>
 
-    <!-- ChatGPT 貢獻 -->
     <string name="settings_about_ai">
         Note: Much of this app was created with assistance from ChatGPT 5.1, with the author
-        performing fine-tuning and integration.
+        performing fine tuning and integration.
     </string>
+
+    <string name="clear_favorite">Clear favorites</string>
+
 
 </resources>

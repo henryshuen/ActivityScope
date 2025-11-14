@@ -2,12 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <!-- Search icon -->
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/menu_search"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <!-- Clear favorite (trash) -->
+    <item
+        android:id="@+id/action_clear_favorite"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/clear_favorite"
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyActivityLauncher">
 
-        <!-- 啟動頁：列出安裝套件 -->
+
         <activity
             android:name=".InstalledPackagesActivity"
             android:exported="true"
@@ -30,13 +30,13 @@
             </intent-filter>
         </activity>
 
-        <!-- 第二頁：顯示某個 app 的 activities -->
+
         <activity
             android:name=".ActivitiesActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyActivityLauncher" />
 
-        <!-- 第三頁：最近啟動紀錄 -->
+
         <activity
             android:name=".RecentActivitiesActivity"
             android:label="@string/app_name"
@@ -52,12 +52,11 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.MyActivityLauncher" />
 
-        <activity android:name=".SettingsActivity" />
-
-
-
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/menu_settings"
+            android:theme="@style/Theme.MyActivityLauncher" />
 
     </application>
-
 
 </manifest>

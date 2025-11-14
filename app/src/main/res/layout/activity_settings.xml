@@ -3,16 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
     android:paddingTop="@dimen/content_top_padding">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Theme section title -->
         <TextView
             android:id="@+id/textThemeSection"
             android:layout_width="wrap_content"
@@ -20,10 +17,9 @@
             android:text="@string/settings_theme_section"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="8dp" />
 
-        <!-- Theme radio group -->
         <RadioGroup
             android:id="@+id/radioGroupTheme"
             android:layout_width="match_parent"
@@ -34,33 +30,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_theme_system"
-                android:textColor="@color/text_primary" />
+                android:textColor="?android:attr/textColorPrimary" />
 
             <RadioButton
                 android:id="@+id/radioLight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_theme_light"
-                android:textColor="@color/text_primary" />
+                android:textColor="?android:attr/textColorPrimary" />
 
             <RadioButton
                 android:id="@+id/radioDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_theme_dark"
-                android:textColor="@color/text_primary" />
-
+                android:textColor="?android:attr/textColorPrimary" />
         </RadioGroup>
 
-        <!-- Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#DDDDDD"
+            android:background="?android:attr/listDivider"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- About section title -->
         <TextView
             android:id="@+id/textAboutSection"
             android:layout_width="wrap_content"
@@ -68,30 +61,46 @@
             android:text="@string/settings_about_section"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="12dp" />
 
-        <!-- Author -->
         <TextView
             android:id="@+id/textAboutAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_about_author"
             android:textSize="14sp"
-            android:textColor="@color/text_primary"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="6dp" />
 
-        <!-- Based on -->
+        <TextView
+            android:id="@+id/textAboutVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_about_version"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:id="@+id/textAboutRepo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_about_repo"
+            android:textSize="14sp"
+            android:autoLink="web"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="6dp" />
+
         <TextView
             android:id="@+id/textAboutBasedOn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_about_based_on"
             android:textSize="14sp"
-            android:textColor="@color/text_primary"
+            android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="6dp" />
 
-        <!-- Source link -->
         <TextView
             android:id="@+id/textAboutSource"
             android:layout_width="match_parent"
@@ -99,17 +108,16 @@
             android:text="@string/settings_about_source"
             android:textSize="14sp"
             android:autoLink="web"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="10dp" />
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="6dp" />
 
-        <!-- ChatGPT credit -->
         <TextView
             android:id="@+id/textAboutAi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_about_ai"
             android:textSize="13sp"
-            android:textColor="@color/text_secondary"
+            android:textColor="?android:attr/textColorSecondary"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp" />
 
