@@ -2,7 +2,7 @@
 
 ActivityScope is an Android utility app for browsing, searching, and launching exported activities from installed applications.
 
-It is inspired by the open source project **ActivityLauncher** and adds extra functions such as favorites, recent history, theming, and better behavior on small screens and watches.
+This project began as a modernization and extension of the original open source **ActivityLauncher**. It aims to improve upon the core concept by adding modern features like favorites, recent history, multi-select, shortcut creation, and a robust Light/Dark theme system.
 
 ---
 
@@ -81,16 +81,15 @@ It is inspired by the open source project **ActivityLauncher** and adds extra fu
 
 ## Screenshots
 
-The first row shows the phone UI, and the second row shows the same features running on Wear OS (tested on Wear OS 6.0 / Android 16, with full functionality available).
+The first row shows the modern phone UI (v1.1.0), and the second row shows the same features running on a Wear OS device.
 
-| Phone – installed packages | Phone – recently launched | Phone – activity detail | Phone – remove recent dialog |
+| Phone: Main Package List | Phone: Activity List | Phone: Recent Activities | Phone: Activity Detail & Shortcuts |
 | --- | --- | --- | --- |
-| ![Phone – installed packages list](docs/01.jpg) | ![Phone – recently launched activities](docs/02.jpg) | ![Phone – activity detail screen with launch / favorite / share actions](docs/03.jpg) | ![Phone – confirmation dialog when removing a recent item](docs/04.jpg) |
+| ![Phone – installed packages list](docs/01.png) | ![Phone – list of activities for an app](docs/02.png) | ![Phone – recently launched activities list](docs/03.png) | ![Phone – activity detail screen with launch / favorite / shortcut actions](docs/04.png) |
 
-| Watch – installed packages (Wear OS 6.0) | Watch – activity detail header (Wear OS 6.0) | Watch – activity actions (Wear OS 6.0) | Watch – settings with theme options (Wear OS 6.0) |
+| Watch: Main Package List | Watch: Activity Detail (Header) | Watch: Activity Detail (Actions) | Watch: Settings (Dark Mode) |
 | --- | --- | --- | --- |
-| ![Watch – installed packages list on round Wear OS display](docs/05.jpg) | ![Watch – activity detail header with app icon and title on Wear OS](docs/06.jpg) | ![Watch – activity detail with launch and favorite actions on Wear OS](docs/07.jpg) | ![Watch – settings screen on Wear OS with system / light / dark theme options](docs/08.jpg) |
-
+| ![Watch – installed packages list on round Wear OS display](docs/05.jpg) | ![Watch – activity detail header with app icon and title on Wear OS](docs/06.jpg) | ![Watch – activity detail with launch, favorite, and shortcut actions on Wear OS](docs/07.jpg) | ![Watch – settings screen on Wear OS with theme options](docs/08.jpg) |
 
 ---
 
@@ -146,6 +145,8 @@ The first row shows the phone UI, and the second row shows the same features run
 * Shows the full package name and class name of an activity
 * Provides three main actions: **Launch Activity**, **Toggle Favorite**, and **Add Shortcut to Home Screen**
 
+Example: `01.png`, `02.png`, `03.png`, `04.png`, `05.jpg`, `06.jpg`, `07.jpg`, `08.jpg`
+
 ### Recent
 
 * Contains activities recently launched from ActivityScope
@@ -192,9 +193,9 @@ A significant portion of code and refactoring work was assisted by **ChatGPT 5.1
 
 ## Acknowledgements
 
-* Original inspiration: **ActivityLauncher**
+* **Base Project & Inspiration:** **ActivityLauncher**
     Repository: <https://github.com/butzist/ActivityLauncher>
-* Development assistance: **ChatGPT 5.1**, used for code generation, refactoring, and debugging support.
+* **Development Assistance:** **ChatGPT 5.1**, used for code generation, refactoring, and debugging support.
 
 ---
 
