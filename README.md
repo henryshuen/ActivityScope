@@ -69,13 +69,11 @@ It is inspired by the open source project **ActivityLauncher** and adds extra fu
 
 ## Screenshots
 
-Screenshots can be added later.  
-A suggested structure:
+| Phone – installed packages | Phone – recently launched | Phone – activity detail | Phone – remove recent dialog |
+| --- | --- | --- | --- |
+| ![Phone – installed packages list](docs/01.jpg) | ![Phone – recently launched activities](docs/02.jpg) | ![Phone – activity detail screen](docs/03.jpg) | ![Phone – confirmation dialog for removing recent item](docs/04.jpg) |
+| ![Watch – installed packages list](docs/05.jpg) | ![Watch – activity detail with app icon](docs/06.jpg) | ![Watch – activity detail actions](docs/07.jpg) | ![Watch – settings screen with theme options](docs/08.jpg) |
 
-    docs/
-      screenshot_packages_light.png
-      screenshot_packages_dark.png
-      screenshot_detail_wear.png
 
 ---
 
