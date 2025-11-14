@@ -69,10 +69,16 @@ It is inspired by the open source project **ActivityLauncher** and adds extra fu
 
 ## Screenshots
 
+The first row shows the phone UI, and the second row shows the same features running on Wear OS (tested on Wear OS 6.0 / Android 16, with full functionality available).
+
 | Phone – installed packages | Phone – recently launched | Phone – activity detail | Phone – remove recent dialog |
 | --- | --- | --- | --- |
-| ![Phone – installed packages list](docs/01.jpg) | ![Phone – recently launched activities](docs/02.jpg) | ![Phone – activity detail screen](docs/03.jpg) | ![Phone – confirmation dialog for removing recent item](docs/04.jpg) |
-| ![Watch – installed packages list](docs/05.jpg) | ![Watch – activity detail with app icon](docs/06.jpg) | ![Watch – activity detail actions](docs/07.jpg) | ![Watch – settings screen with theme options](docs/08.jpg) |
+| ![Phone – installed packages list](docs/01.jpg) | ![Phone – recently launched activities](docs/02.jpg) | ![Phone – activity detail screen with launch / favorite / share actions](docs/03.jpg) | ![Phone – confirmation dialog when removing a recent item](docs/04.jpg) |
+
+| Watch – installed packages (Wear OS 6.0) | Watch – activity detail header (Wear OS 6.0) | Watch – activity actions (Wear OS 6.0) | Watch – settings with theme options (Wear OS 6.0) |
+| --- | --- | --- | --- |
+| ![Watch – installed packages list on round Wear OS display](docs/05.jpg) | ![Watch – activity detail header with app icon and title on Wear OS](docs/06.jpg) | ![Watch – activity detail with launch and favorite actions on Wear OS](docs/07.jpg) | ![Watch – settings screen on Wear OS with system / light / dark theme options](docs/08.jpg) |
+
 
 
 ---
