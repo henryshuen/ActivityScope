@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App bar palette in dark mode (可以沿用同一組藍色) -->
+    <color name="purple_200">#FFCBE5FE</color>
+    <color name="purple_500">#FF0F65B8</color>
+    <color name="purple_700">#FF53A2ED</color>
+
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- Dark mode backgrounds -->
+    <color name="background_light">#FF212121</color>
+    <color name="background_dark">#FF000000</color>
+
+    <!-- Text colors for dark mode -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFB0B0B0</color>
+
+    <!-- Button colors mapping (讓 layout 用同一組名稱就好) -->
+    <color name="button_bg">@color/button_dark_bg</color>
+    <color name="button_text">@color/button_dark_text</color>
+
+</resources>

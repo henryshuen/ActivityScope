@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App bar main palette (blue instead of purple) -->
+    <color name="purple_200">#FFCBE5FE</color>
+    <color name="purple_500">#FF0F65B8</color>
+    <color name="purple_700">#FF53A2ED</color>
+
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Backgrounds (default = light theme) -->
+    <color name="background_light">#FFFFFFFF</color>
+    <color name="background_dark">#FF212121</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#FF000000</color>
+    <color name="text_secondary">#FF666666</color>
+
+    <!-- Button colors (base / light) -->
+    <color name="button_light_bg">#FFE0E0E0</color>
+    <color name="button_light_text">#FF000000</color>
+
+    <!-- Button colors (dark variants) -->
+    <color name="button_dark_bg">#FF424242</color>
+    <color name="button_dark_text">#FFFFFFFF</color>
+
+    <!-- Generic button colors used in layouts -->
+    <color name="button_bg">@color/button_light_bg</color>
+    <color name="button_text">@color/button_light_text</color>
+
+</resources>

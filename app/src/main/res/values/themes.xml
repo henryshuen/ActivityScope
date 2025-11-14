@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base app theme (light mode default) -->
+    <style name="Theme.MyActivityLauncher" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+
+        <!-- Light theme background & text -->
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+
+        <!-- Light theme dialog -->
+        <item name="alertDialogTheme">@style/MyAlertDialog.Light</item>
+    </style>
+
+    <!-- Explicit light theme -->
+    <style name="Theme.MyActivityLauncher.Light" parent="Theme.MyActivityLauncher"/>
+
+    <!-- Dark theme version -->
+    <style name="Theme.MyActivityLauncher.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
+        <!-- Dark theme dialog -->
+        <item name="alertDialogTheme">@style/MyAlertDialog.Dark</item>
+    </style>
+
+
+    <!-- Light AlertDialog -->
+    <style name="MyAlertDialog.Light" parent="@style/ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Dark AlertDialog -->
+    <style name="MyAlertDialog.Dark" parent="@style/ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

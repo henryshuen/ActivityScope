@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">ActivityScope</string>
+
+    <!-- Search hints -->
+    <string name="search_apps_hint">Search apps</string>
+    <string name="search_activities_hint">Search activities</string>
+
+    <!-- Menu -->
+    <string name="menu_search">Search</string>
+    <string name="menu_favorite">Favorites</string>
+    <string name="menu_recent">Recent</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Titles -->
+    <string name="title_installed_packages">Installed packages</string>
+    <string name="title_activities">Activities</string>
+    <string name="title_recently_launched">Recently launched</string>
+    <string name="title_favorites">Favorites</string>
+
+    <!-- Dialogs -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- Recent / clear dialogs -->
+    <string name="action_clear_recent">Clear recent</string>
+    <string name="clear_single_title">Remove item</string>
+    <string name="clear_single_message">Remove "%1$s" from recent list?</string>
+    <string name="cleared_one">Removed from recent</string>
+    <string name="clear_recent">Clear recent</string>
+    <string name="clear_recent_message">Are you sure you want to clear the recent startup history?</string>
+    <string name="cleared_all">Recent history cleared</string>
+
+    <!-- Favorites -->
+    <string name="remove_favorite_title">Remove favorite</string>
+    <string name="remove_favorite_message">Remove "%1$s" from favorites?</string>
+    <string name="removed_from_favorite">Removed from favorites</string>
+
+    <!-- Settings: Theme -->
+    <string name="settings_theme_section">Theme</string>
+    <string name="settings_theme_system">System default</string>
+    <string name="settings_theme_light">Light theme</string>
+    <string name="settings_theme_dark">Dark theme</string>
+
+    <!-- Settings: About -->
+    <string name="settings_about_section">About</string>
+
+    <!-- 作者 -->
+    <string name="settings_about_author">
+        Author: Henryshuen
+    </string>
+
+    <!-- 致敬與靈感來源 -->
+    <string name="settings_about_based_on">
+        Inspired by the open-source project "Activity Launcher", and created to improve activity
+        browsing with recent and favorite features.
+    </string>
+
+    <!-- 原作者 GitHub 連結 -->
+    <string name="settings_about_source">
+        Original project: https://github.com/butzist/ActivityLauncher
+    </string>
+
+    <!-- ChatGPT 貢獻 -->
+    <string name="settings_about_ai">
+        Note: Much of this app was created with assistance from ChatGPT 5.1, with the author
+        performing fine-tuning and integration.
+    </string>
+
+</resources>
